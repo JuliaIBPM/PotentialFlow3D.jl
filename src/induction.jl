@@ -12,8 +12,6 @@ function segmentvelocity(x::AbstractVector{T},vl::VortexLineSegment) where {T<:R
     r2norm = sqrt(dot(r2,r2)+σ^2)
     r2dir = r2/r2norm
 
-    println([r1dir,r2dir])
-
     b = cross(r1,r2)
     bsq = dot(b,b) #+ σ*lensq
 

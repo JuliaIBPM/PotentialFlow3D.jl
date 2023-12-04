@@ -7,4 +7,5 @@ const GROUP = get(ENV, "GROUP", "All")
 
 if GROUP == "All"
     include("types.jl")
+    include("operations.jl")
   end
