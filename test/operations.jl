@@ -3,7 +3,7 @@
     x2 = VortexPoint3([Inf,0.0,0.0])
 
     r = 5.0*rand()
-    x = VortexPoint3([0.0,r,0.0])
+    x = [0.0,r,0.0]
 
     seg = VortexLineSegment(x1,x2,1.0)
 
@@ -16,8 +16,18 @@
     seg = VortexLineSegment(x1,x2,Γ)
 
     r = 5.0*rand()
-    x = VortexPoint3([r,0.0,rand()])
+    x = [r,0.0,rand()]
     vel = PotentialFlow3D.segmentvelocity(x,seg)
     @test vel ≈ [0.0,Γ/(2π*r),0.0]
+
+    x = [0.0,0.0,0.0]
+    vel = PotentialFlow3D.segmentvelocity(x,seg)
+    @test vel ≈ [0.0,0.0,0.0]
+
+    x1 = VortexPoint3(rand(3))
+    x2 = VortexPoint3(rand(3))
+    seg = VortexLineSegment(x1,x2,Γ)
+    vel = PotentialFlow3D.segmentvelocity(x1,seg)
+    @test vel ≈ [0.0,0.0,0.0]
 
 end
