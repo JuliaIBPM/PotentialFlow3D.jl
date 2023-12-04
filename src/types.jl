@@ -1,4 +1,4 @@
-import Base: +, -, vec
+import Base: +, -, vec, length
 import LinearAlgebra: cross, dot, norm
 
 const DEFAULTBLOB = 1.0e-3
@@ -114,4 +114,11 @@ unitloop(x::Vector{T};kwargs...) where T <: AbstractVector = VortexLoop(x,1.0;kw
 
 Return the `j`th line segment on vortex loop `v`.
 """
-segment(v::VortexLoop,j::Int) = VortexLineSegment(v.x[j],v.x[mod(j,length(v.x))+1],v.Γ,v.σ) 
+segment(v::VortexLoop,j::Int) = VortexLineSegment(v.x[j],v.x[mod(j,length(v.x))+1],v.Γ,v.σ)
+
+"""
+    length(v::VortexLoop)
+
+Number of segments in loop `v`
+"""
+length(v::VortexLoop) = length(v.x)

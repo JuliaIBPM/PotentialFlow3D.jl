@@ -6,7 +6,7 @@ module PotentialFlow3D
 
     export VortexPoint3, VortexLineSegment, unitsegment, VortexLoop, segment, unitloop
 
-    export cross, dot, norm
+    export cross, dot, norm, velocity
 
     include("types.jl")
     include("basicoperations.jl")
