@@ -1,7 +1,7 @@
 import Base: +, -, vec, length
 import LinearAlgebra: cross, dot, norm
 
-const DEFAULTBLOB = 1.0e-3
+const DEFAULTBLOB = 1.0e-5
 const DEFAULTINF = 1.0e12
 
 struct VortexPoint3{T}
@@ -17,6 +17,9 @@ VortexPoint3(p::AbstractVector{T}) where {T} = VortexPoint3(SVector{3,T}(p))
 (-)(p1::VortexPoint3,p2::VortexPoint3) = p1.coords.-p2.coords
 (-)(p::VortexPoint3) = VortexPoint3(-p1.coords)
 (-)(x::AbstractVector{T},p::VortexPoint3{T}) where {T} = SVector{3,T}(x .- p.coords)
+
+length(v::VortexPoint3) = length(v.coords)
+
 
 cross(p1::VortexPoint3,p2::VortexPoint3) = cross(p1.coords,p2.coords)
 dot(p1::VortexPoint3,p2::VortexPoint3) = dot(p1.coords,p2.coords)
@@ -72,6 +75,13 @@ dot(v1::VortexLineSegment,v2::VortexLineSegment) = dot(vec(v1),vec(v2))
 Return the length of line segment `v`
 """
 norm(v::VortexLineSegment) = norm(vec(v))
+
+"""
+    midpoint(v::VortexLineSegment)
+
+Return the midpoint of line segment `v`
+"""
+midpoint(v::VortexLineSegment) = 0.5(v.xstart + v.xend)
 
 ### Vortex loop ###
 
